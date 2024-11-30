@@ -1,0 +1,90 @@
+
+    <!-- Sección para Actualizar otros datos del usuario -->
+    <div class="data-container" (ngInit)="getPersons()">
+      <h3 class="data-title"> Datos del usuario</h3>
+  
+        <div class="person-data">
+          <div class="row">
+            <div class="col">
+            <label for="firstName" class="form-label">Nombre</label>
+            <input type="text" id="firstName" class="form-control input-field" [(ngModel)]="person.first_name" placeholder="Ingresar nombre">
+          </div>
+            <div class="col">
+            <label for="lastName" class="form-label">Apellido</label>
+            <input type="text" id="lastName" class="form-control input-field" [(ngModel)]="person.last_name" placeholder="Ingresar apellido">
+          </div>
+        </div>
+            <div class="row">
+                <div class="col">
+            <label for="documentType" class="form-label">Documento</label>
+            <input type="text" id="documentType" class="form-control input-field" [(ngModel)]="person.type_document" placeholder="Ingresar tipo de documento">
+          </div>
+                <div class="col">
+            <label for="documentNumber" class="form-label">Número de documento</label>
+            <input type="text" id="documentNumber" class="form-control input-field" [(ngModel)]="person.document" placeholder="Ingresar número de documento">
+          </div>
+        </div>
+            <div class="row">
+                <div class="col">
+            <label for="birthDate" class="form-label">Fecha de nacimiento</label>
+            <input type="date" id="birthDate" class="form-control input-field" [(ngModel)]="person.birth_of_date">
+          </div>
+                <div class="col">
+            <label for="phone" class="form-label">Teléfono</label>
+            <input type="text" id="phone" class="form-control input-field" [(ngModel)]="person.phone" placeholder="Ingresar teléfono">
+          </div>
+        </div>
+            <div class="row">
+                <div class="col">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" id="email" class="form-control input-field" [(ngModel)]="person.email" placeholder="Ingresar correo electrónico">
+          </div>
+          <div class="row">
+              <div class="col">
+            <label for="address" class="form-label">Dirección</label>
+            <input type="text" id="address" class="form-control input-field" [(ngModel)]="person.addres" placeholder="Ingresar dirección">
+          </div>
+                <div class="col">
+            <label for="city" class="form-label">Ciudad</label>
+            <div class="input-group position-relative">
+              <input 
+                type="text" 
+                class="form-control input-field" 
+                matInput 
+                [matAutocomplete]="cityAuto" 
+                [(ngModel)]="person.cityName" 
+                placeholder="Ingresar ciudad"
+                (input)="searchCitys($event)" 
+                required 
+                #cityField="ngModel"
+                [ngClass]="{
+                  'is-invalid': cityField.invalid && cityField.touched, 
+                  'is-valid': cityField.valid && cityField.touched
+                }"
+              />
+              <!-- Íconos de validación -->
+              <i *ngIf="cityField.valid && person.city" class="fa fa-check-circle text-success" 
+                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
+              <i *ngIf="cityField.invalid && cityField.touched" class="fas fa-exclamation-circle text-danger" 
+                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
+            </div>
+            <mat-autocomplete #cityAuto="matAutocomplete" (optionSelected)="onCitySelect($event)">
+              <mat-option *ngFor="let city of filteredCitys" [value]="city.name">
+                {{ city.name }}
+              </mat-option>
+            </mat-autocomplete>
+            <div *ngIf="cityField.invalid && cityField.touched" class="invalid-feedback">
+              <div *ngIf="cityField.errors?.['required']">Debes seleccionar una ciudad.</div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Botón Actualizar Datos -->
+        <div class="row">
+          <div class="col">
+            <button (click)="saveChanges()" class="btn btn-primary save-btn">Actualizar datos</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>

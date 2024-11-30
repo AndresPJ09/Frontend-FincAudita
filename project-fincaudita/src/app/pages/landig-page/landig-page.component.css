@@ -1,0 +1,496 @@
+.header {
+  display: flex;
+  align-items: center; /* Asegura la alineación vertical de todos los elementos */
+  justify-content: space-between; /* Distribuye el espacio uniformemente */
+  background-color: #fff;
+  padding: 10px 20px; /* Ajusta el padding para un mejor espaciado */
+  border-bottom: 2px solid #e0e0e0;
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  width: 100%;
+}
+.header .nav-links a.active {
+  color: #44e32a;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.logo h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  font-family: 'Cabin', sans-serif; /* Fuente moderna sin cursiva */
+}
+
+.green {
+  color: #44E32A;
+}
+
+.black {
+  color: #000000;
+}
+
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: flex-end; /* Alinea los enlaces a la derecha */
+}
+
+.nav-links li {
+  margin-right: 30px; /* Aumenta el margen para distribuir mejor los enlaces */
+}
+
+.nav-links a {
+  cursor: pointer; /* Muestra el cursor en forma de mano */
+  text-decoration: none; /* Quita el subrayado del enlace */
+  color: inherit; /* Mantiene el color predeterminado de los enlaces */
+  transition: color 0.3s ease; /* Añade una transición suave al cambiar el color */
+}
+
+.nav-links a:hover {
+  color: #44e32a; /* Cambia el color al hacer hover */
+}
+
+
+
+.cta {
+  margin-top: -5px; /* Sube el botón un poco */
+  background-color: #44e32a; /* Color de fondo */
+  padding: 10px 30px; /* Ajusta el padding para un tamaño más adecuado */
+  font-size: 1rem; /* Tamaño de la fuente */
+  border-radius: 5px; /* Bordes menos redondeados */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Sombra más sutil */
+  transition: all 0.3s ease; /* Transiciones suaves */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  font-weight: 700; /* Peso de la fuente */
+  cursor: pointer; /* Cursor en forma de mano */
+  display: inline-flex; /* Asegura que el contenido esté centrado */
+  align-items: center; /* Centra el contenido verticalmente */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  width: 20%
+  ;
+}
+
+.cta:hover {
+  background-color: #3cc129; /* Color al pasar el mouse */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra más grande al pasar el mouse */
+}
+
+.icon {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+  font-size: 1.2rem; /* Ajusta el tamaño del ícono */
+  color: white; /* Color del ícono */
+}
+
+
+/* Estilos del Hero */
+.hero {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  overflow: hidden; /* Oculta el contenido que sobresale */
+}
+
+/* Contenedor de fondo */
+.hero-background {
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+z-index: 0; /* Asegura que esté detrás del contenido */
+background-image: url('../../assets/crispin-jones-sweDAVjbU3Q-unsplash.jpg');
+background-size: 120% auto; /* Aumenta el ancho de la imagen al 120% */
+background-position: center;
+background-repeat: no-repeat;
+height: 1400px; /* Asegúrate de que ocupe toda la altura de la pantalla */
+animation: moveBackground 20s linear infinite; /* Animación para el movimiento */
+}
+
+
+/* Animación de movimiento */
+@keyframes moveBackground {
+  0% { background-position: 0% 0%; } /* Comienza desde el lado izquierdo */
+  100% { background-position: 100% 0%; } /* Termina en el lado derecho */
+}
+
+.hero-content {
+  position: relative; /* Asegura que el contenido esté por encima del fondo */
+  z-index: 1; /* Apila el contenido por encima del fondo */
+}
+
+h1 {
+font-family: 'Cabin', sans-serif;
+font-size: 48px;
+margin-bottom: 20px;
+}
+p {
+font-family: 'Roboto', sans-serif;
+font-size: 18px;
+margin-bottom: 30px;
+}
+
+.white-text {
+  color: #000000 !important; /* Asegura que el texto sea blanco */
+}
+
+.services {
+  padding: 60px 20px 100px; /* Aumenta el padding inferior para dar más espacio */
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.services h2 {
+  font-size: 2.5rem;
+  margin-bottom: 80px;
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center; /* Centra las tarjetas horizontalmente */
+  justify-items: center; /* Centra el contenido dentro de cada celda */
+  max-width: 1200px; /* Limita el ancho máximo para que las tarjetas no se extiendan demasiado */
+  margin: 0 auto; /* Centra el contenedor completo */
+}
+
+.service-card {
+  position: relative;
+  background-color: #fff; /* Fondo blanco para la tarjeta */
+  border-radius: 15px;
+  overflow: hidden;
+  width: 300px;
+  height: 400px; /* Altura total de la tarjeta */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+  width: 100%;
+  height: 60%; /* Altura para la imagen, ajustada para dejar espacio al texto */
+  background-size: cover;
+  background-position: center;
+}
+
+.card-content {
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  background-color: #fff; /* Fondo blanco para el área de texto */
+  color: #333; /* Color de texto oscuro para mejor contraste */
+  flex-grow: 1; /* Permite que el contenido crezca para llenar el espacio disponible */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra el contenido verticalmente */
+}
+
+.card-content h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px; /* Espacio entre el título y el párrafo */
+}
+
+.card-content p {
+  font-size: 1rem;
+  color: #666; /* Color de texto más suave */
+}
+
+/* Imágenes de fondo para cada tarjeta */
+.card-finca {
+  background-image: url('../../assets/card1.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.card-auditoria {
+  background-image: url('../../assets/card3.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.card-cultivo {
+  background-image: url('../../assets/card-servicios2.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    width: 90%;
+  }
+}
+
+.about {
+padding: 150px 20px;
+background-color: #f9f9f9; /* Fondo claro para la sección */
+text-align: center;
+position: relative; /* Permite superposiciones si es necesario */
+}
+
+.about-content {
+display: flex;
+align-items: center;
+justify-content: center;
+max-width: 1200px; /* Ancho máximo del contenido */
+margin: 0 auto; /* Centra el contenido */
+z-index: 1; /* Mantiene el contenido en frente si hay un fondo */
+gap: 20px; /* Espacio entre el texto y la imagen */
+margin-top: 90px;
+
+}
+
+.about-text {
+flex: 1; /* Permite que el texto ocupe el espacio restante */
+padding: 20px; /* Espacio alrededor del texto */
+font-size: 1.1rem; /* Aumenta el tamaño de la fuente */
+line-height: 1.8; /* Mejora la legibilidad con mayor espacio entre líneas */
+text-align: justify; /* Justifica el texto para un aspecto más limpio */
+}
+
+.about-text h2 {
+font-size: 2.5rem; /* Tamaño de fuente del título */
+margin-bottom: 7%; /* Espaciado debajo del título */
+}
+
+.about-text p {
+  line-height: 1.6;
+  margin-bottom: 30px;
+  text-align: left; /* Alineación a la izquierda para una mejor legibilidad */
+}
+
+.about-image {
+flex: 1; /* Permite que la imagen ocupe el espacio restante */
+max-width: 400px; /* Tamaño máximo de la imagen */
+border-radius: 10px; /* Bordes redondeados */
+overflow: hidden; /* Asegura que la imagen no sobresalga */
+}
+
+.about-image img {
+width: 100%; /* La imagen ocupa todo el contenedor */
+height: auto; /* Mantiene la relación de aspecto */
+border-radius: 10px; /* Bordes redondeados en la imagen */
+max-height: 300px; /* Limita la altura de la imagen para mantener la proporción */
+object-fit: cover; /* Asegura que la imagen cubra completamente el contenedor sin distorsionarse */
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+.about-content {
+  flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
+  text-align: center; /* Centra el texto */
+}
+
+.about-image {
+  max-width: 100%; /* Asegura que la imagen ocupe el ancho completo */
+}
+}
+
+.footer {
+background: url('../../assets/pexels-andriy-nestruiev-288919368-14968005.jpg') no-repeat center center/cover;
+position: relative;
+padding: 40px 20px;
+color: white;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+text-align: center;
+min-height: 30vh;
+}
+
+.footer::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(55, 55, 55, 0.287);
+z-index: 1;
+}
+
+.footer-content {
+left: 360px;
+position: relative;
+z-index: 2;
+display: flex;
+flex-direction: column;
+}
+
+.footer h3 {
+font-size: 2.5rem;
+margin-bottom: 10px;
+font-family: 'Montserrat', sans-serif;
+}
+
+.footer p {
+font-size: 1.2rem;
+margin-bottom: 30px;
+color: #ddd;
+}
+
+.social-icons {
+margin-bottom: 20px;
+}
+
+.social-icons a {
+font-size: 1.8rem;
+margin: 0 15px;
+transition: 0.4s ease;
+display: inline-block;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+background-color: rgba(255, 255, 255, 0.15);
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+line-height: 60px;
+text-align: center;
+color: white;
+position: relative;
+}
+
+.social-icons a:hover {
+background-color: #44E32A;
+color: white;
+box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+transform: translateY(-5px) scale(1.1);
+}
+
+.social-icons a::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border-radius: 50%;
+transition: 0.4s ease;
+box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+}
+
+.social-icons a:hover::before {
+box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+
+.footer-links a {
+color: #dbdada;
+margin: 0 15px;
+font-size: 1rem;
+text-decoration: none;
+transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+color: #b6b9b5;
+}
+
+@media (max-width: 768px) {
+.social-icons a {
+  margin: 0 10px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+}
+
+/* Estilos para la sección de ubicación */
+.location {
+  background-color: #f9f9f9; /* Fondo claro */
+  padding: 60px 20px; /* Espaciado */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  margin: 40px 0; /* Margen superior e inferior */
+}
+
+.location-title {
+  font-size: 2.5rem; /* Tamaño del título */
+  margin-bottom: 20px; /* Espacio debajo del título */
+  color: #333; /* Color del texto */
+  text-align: center; /* Centra el texto */
+}
+
+.map-container {
+  overflow: hidden;
+  border-radius: 8px; /* Bordes redondeados */
+  border: 1px solid #ccc; /* Borde sutil */
+  margin-top: 20px; /* Espacio superior */
+}
+
+iframe {
+  width: 100%; /* Ancho completo */
+  height: 450px; /* Altura del mapa */
+  border: none; /* Sin borde */
+  border-radius: 8px; /* Bordes redondeados */
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+  .header .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .nav-links {
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .cta {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .footer {
+    padding: 20px;
+    flex-direction: column;
+  }
+
+  .footer-content {
+    align-items: center;
+  }
+
+  .social-icons a {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 5px;
+  }
+}

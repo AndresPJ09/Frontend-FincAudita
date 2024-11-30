@@ -1,0 +1,360 @@
+
+.dashboard {
+  width: 200px;
+  background-color: #F2F2F2;
+  height: 100vh; 
+  position: fixed; 
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1; 
+}
+
+/* Estilos para el título del dashboard */
+.dashboard-title {
+  margin: 20px 0;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Estilo para la lista de enlaces */
+.dashboard ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; 
+  width: 100%;
+}
+
+/* Estilos para los enlaces dentro del dashboard */
+.dashboard a {
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex; 
+  display: block;
+  padding: 10px;
+  text-align: left; 
+  width: 100%; 
+}
+
+.dashboard a:hover,
+.dashboard a.active {
+  background-color: #44E32A;
+  border: 1px solid #44E32A;
+  border-radius: 5px; 
+}
+
+/* Estilos específicos para el acordeón dentro del dashboard */
+.dashboard .accordion-button {
+  background-color: #F2F2F2; 
+  color: black;
+  border: none;
+  width: 100%;
+  text-align: left; 
+  padding-left: 10px; 
+  font-size: 18px; 
+}
+
+.dashboard .accordion-button i {
+  margin-right: 8px;
+}
+
+/* Elimina el efecto de selección del acordeón */
+.dashboard .accordion-button:focus {
+  box-shadow: none;
+  background-color: #44E32A; 
+  outline: none;
+}
+
+.dashboard .accordion-button:hover {
+  color: black; 
+  background-color: #44E32A; 
+}
+
+.dashboard .accordion-item {
+  border: none;
+  width: 100%; 
+}
+
+/* Elimina el borde en el acordeón */
+.dashboard .accordion-collapse {
+  border: none;
+}
+
+/* Estilo para el acordeón cuando está abierto */
+.dashboard .accordion-button:not(.collapsed) {
+  color: black; 
+  background-color: #44E32A; 
+}
+
+/* Estilo para el cuerpo del acordeón */
+.dashboard .accordion-body {
+  padding: 0;
+  background-color: #F2F2F2; 
+}
+
+/* Estilo para los elementos de la lista dentro del acordeón */
+.dashboard .list-group-item {
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+  background-color: #F2F2F2; 
+  border: none;
+  text-align: center;
+}
+
+.dashboard .list-group-item {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; 
+  width: 100%;
+}
+
+.dashboard .list-group-item a {
+  display: flex; 
+  align-items: center;
+}
+
+.dashboard .list-group-item a i {
+  margin-right: 8px; 
+}
+
+.logout {
+  margin-bottom: 20%;
+  text-align: center !important;
+  color: black; 
+}
+
+.logout:hover {
+  color: #008f39;
+  cursor: pointer; 
+}
+
+.logout i {
+  transition: color 0.3s ease; 
+}
+
+.logout:hover i {
+  color: #008f39; 
+}
+
+/* Estilo base del navbar */
+.nav-container {
+  width: 100%;
+  max-width: 100%; 
+  margin: 0 auto; 
+}
+
+.nav-items {
+  background-color: #53ea3c;
+  padding: 10px 80px; 
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end; 
+  gap: 20px; 
+  position: relative;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.nav-item {
+  display: inline-block;
+}
+
+.nav-item a {
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+}
+
+.nav-item a:hover {
+  background-color: #44E32A;
+  transform: scale(1.1); 
+}
+.tooltip {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 1;
+  top: 125%; 
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%; 
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #333 transparent;
+}
+
+/* Mostrar el tooltip cuando el usuario pasa el cursor por encima del ítem */
+.nav-item:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.content {
+  padding-top: 60px;
+  margin-left: 0;
+}
+/* Estilos personalizados para las alertas SweetAlert2 */
+.custom-swal-container {
+  background-color: #f0f4f8; 
+  border-radius: 15px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.custom-swal-title {
+  font-size: 1.5rem; 
+  font-weight: 600; 
+  color: #333; 
+  text-align: center; 
+}
+
+.custom-swal-confirm {
+  background-color: #44E32A; 
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  padding: 10px 20px; 
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
+}
+
+.custom-swal-confirm:hover {
+  background-color: #36c236; 
+  transform: scale(1.05); 
+}
+
+.custom-swal-cancel {
+  background-color: #f44336; 
+  color: rgb(0, 0, 0); 
+  border: none;
+  border-radius: 5px; 
+  padding: 10px 20px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.custom-swal-cancel:hover {
+  background-color: #d32f2f; 
+  transform: scale(1.05);
+}
+
+.custom-swal-popup {
+  border-radius: 15px; 
+  overflow: hidden; 
+}
+
+
+.profile-pic {
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%; 
+  object-fit: cover; 
+}
+.nav-item.calendar a:hover svg {
+  fill: #000000; 
+}
+
+.gemini-icon {
+  width: 45px;
+  height: 45px;
+  margin-top: -5px; 
+}
+
+.notification-icon-black {
+  fill: black;
+}
+.notification-counter {
+  position: absolute;
+  top: -8px; 
+  right: -8px; 
+  background-color: red; 
+  color: white; 
+  border-radius: 50%;
+  padding: 2px 6px; 
+  font-size: 12px; 
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+  line-height: 20px; 
+}
+
+.nav-item.notifications {
+  position: relative;
+}
+
+.notification-icon-black {
+  font-size: 24px; 
+}
+.user-profile-dropdown {
+  .btn-userprofile {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #0c0c0c;
+    
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    
+    .username {
+      font-weight: bold;
+    }
+  }
+  
+  .custom-dropdown-menu {
+    padding: 0;
+    
+    .dropdown-item {
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      
+      i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+      }
+      
+      &:hover {
+        background-color: #ffffff;
+        color: #44E32A;
+        
+      }
+
+    }
+    .menu-text {
+      margin-left: 10px; 
+    }
+
+    .dropdown-divider {
+      margin: 0;
+    }
+  }
+}

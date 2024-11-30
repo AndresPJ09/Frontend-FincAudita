@@ -1,0 +1,114 @@
+/* Contenedor Principal */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #93ff82;
+  border-radius: 12px;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+  transition: transform 0.3s ease;
+}
+
+.profile-container:hover {
+  transform: scale(1.02);
+}
+
+/* Imagen de Perfil */
+.profile-image {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid #44e32a;
+  transition: border-color 0.3s ease;
+}
+
+.profile-pic:hover {
+  border-color: #45A536;
+}
+
+.change-photo-text {
+  color: #050505;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.change-photo-text:hover {
+  color: #ffffff;
+}
+
+/* Datos del Usuario */
+.user-data {
+  width: 100%;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.user-data label {
+  font-size: 0.95rem;
+  color: #000000;
+  margin-bottom: 0.5rem;
+}
+
+.user-data input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 8px; /* Bordes más redondeados */
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Sombra interna sutil */
+  font-size: 1rem;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.user-data input:focus {
+  border-color: #44E32A;
+  box-shadow: 0 0 8px rgba(68, 227, 42, 0.4); /* Sombra de enfoque más visible */
+}
+
+/* Botón para guardar cambios */
+.save-btn {
+  background-color: #44E32A;
+  color: rgb(0, 0, 0);
+  padding: 0.75rem 1rem; /* Reducir el padding para hacer el botón menos ancho */
+  border-radius: 8px; /* Bordes más redondeados */
+  cursor: pointer;
+  font-size: 1rem; /* Ajustar el tamaño de la fuente si es necesario */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none; /* Eliminar el borde */
+  width: auto; /* Ajustar el ancho automáticamente según el contenido */
+  display: inline-block; /* Hacer que el botón solo sea tan ancho como su contenido */
+  margin-top: 1rem;
+  margin-left: 70%;
+}
+
+.save-btn:hover {
+  background-color: #45A536;
+  color: rgb(255, 255, 255);
+  transform: translateY(-2px); /* Efecto de elevación sutil */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 75%; /* Ajuste la posición más abajo */
+  transform: translateY(-55%); /* Centrar el ojo */
+  cursor: pointer;
+  color: #27282a;
+}
+
+.toggle-password:hover {
+  color: #44E32A;
+}

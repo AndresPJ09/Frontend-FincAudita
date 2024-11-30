@@ -1,0 +1,490 @@
+/* Título en color verde */
+.title {
+    color: #44E32A;
+    text-align: left;
+    margin-bottom: 40px;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+/* Botón Agregar Nuevo */
+.add-btn {
+    float: right;
+    margin-bottom: 20px;
+    border: none;
+}
+
+/* Modal container */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.show-modal {
+    display: block;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    width: 70%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+} 
+
+/* Add space between Description and State */
+.form-group+.form-group {
+    margin-top: 15px;
+}
+
+/* Style checkbox */
+.form-check-input {
+    margin-top: 10px;
+    transform: scale(1.8);
+}
+
+.state-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-check-label {
+    margin-right: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Center close (X) icon horizontally and move it slightly up */
+.close {
+    position: absolute;
+    top: 10px;
+    transform: translateX(-50%);
+    right: 15px;
+    text-align: left;
+    font-size: 24px;
+}
+
+.close:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: #000000;
+}
+
+/* Botones del modal de cerrar y agregar */
+.btn-secondary {
+    background-color: #ff0000;
+    color: rgb(0, 0, 0);
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #ff0000;
+    color: rgb(255, 255, 255);
+}
+
+.btn-primary {
+    background-color: #44E32A;
+    /* Primary greenish color */
+    color: rgb(0, 0, 0);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #44E32A;
+    color: rgb(255, 255, 255);
+}
+
+.btn-success {
+    background-color: #44E32A;
+    color: rgb(0, 0, 0);
+}
+
+.btn-success:hover {
+    background-color: #44E32A;
+    color: rgb(255, 255, 255);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(21, 205, 40, 0.1);
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.table tr:hover {
+    background-color: #f5f5f5;
+}
+
+/*Iconoes de la tabla de eliminar y editar*/
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.btn-icon.edit {
+    color: #000000;
+}
+
+.btn-icon.delete {
+    color: #000000;
+}
+
+.btn-icon.edit:hover {
+    color: #007bff;
+}
+
+.btn-icon.delete:hover {
+    color: #ff0000;
+}
+
+.input-field {
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo cuando el campo de entrada está en foco */
+.input-field:focus {
+    border: 1px solid #44E32A !important; 
+    outline: none !important;
+    box-shadow: 0 0 5px rgba(68, 227, 42, 0.5);
+}
+
+/* Estilo para el checkbox cuando está en foco */
+.form-check-input:focus {
+    box-shadow: 0 0 5px rgba(68, 227, 42, 0.5); 
+    border: 1px solid #44E32A !important; 
+}
+
+/* Estilo para el checkbox cuando está activado */
+.form-check-input:checked {
+    background-color: #44E32A !important; 
+    border-color: #44E32A !important;
+}
+
+.delete-selected-container {
+    position: relative; 
+    display: flex;
+    justify-content: flex-end; 
+}
+
+/* Contenedor de búsqueda y exportación */
+.search-export-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Contenedor principal del campo de búsqueda */
+.search-container {
+    position: relative;
+    width: 300px;
+}
+
+/***** Estilo para el campo de entrada */
+.search-container input {
+    width: 100%;
+    padding: 8px 12px;
+    padding-right: 35px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/*** Icono de búsqueda */
+.search-container .search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #888;
+    pointer-events: none; /* Para que no interfiera con el input */
+}
+
+/* Efectos al enfocar el campo de búsqueda */
+.search-container input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.search-container .search-icon i {
+    font-family: 'FontAwesome'; /* Asegúrate de tener FontAwesome configurado */
+}
+
+.search-container {
+    width: auto;
+}
+
+.form-control-sm {
+    width: 200px;
+}
+
+/**** Botones de exportación */
+.export-buttons {
+    display: flex;
+    gap: 10px; 
+}
+
+.export-select {
+    width: 150px; 
+    position: relative;
+}
+
+/* Estilo del ng-select */
+.ng-select {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    height: 37px;
+    width: 150px; /* Aseguramos que tenga un ancho fijo */
+}
+
+/* Panel del dropdown */
+.ng-select .ng-dropdown-panel {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    position: absolute; 
+    left: 0;
+    z-index: 10;
+}
+
+/* Estilo del contenedor de las opciones */
+.option-container {
+    width: 100%; /* Aseguramos que las opciones ocupen todo el ancho del contenedor */
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 6px;
+    background-color: #f5f5f5;
+    margin-bottom: 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover en las opciones */
+.option-container:hover {
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+/* Estilos específicos según el tipo de opción */
+.option-container[value="pdf"] {
+    color: #d32f2f;
+}
+
+.option-container[value="excel"] {
+    color: #388e3c;
+}
+
+/* Hover por tipo de opción */
+.option-container[value="pdf"]:hover {
+    border-color: #d32f2f;
+}
+
+.option-container[value="excel"]:hover {
+    border-color: #388e3c;
+}
+
+/* Iconos dentro de las opciones */
+.option-container i {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+/* Texto de las opciones */
+.custom-option-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Espaciado adicional para centrar mejor */
+.custom-ng-select .ng-placeholder {
+    text-align: center;
+    color: #888;
+    font-weight: bold;
+}
+
+.container {
+    position: relative; 
+}
+
+/**** Paginacónn */
+.pagination-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 1rem 0; 
+    border: 1px solid #44E32A; 
+    border-radius: 10px; 
+    padding: 0.5rem; 
+    background-color: white; 
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end; 
+}
+
+.pagination button,
+.arrow {
+    margin: 0 0.5rem; 
+    padding: 0.5rem 1rem;
+    border: none; 
+    background-color: transparent; 
+    color: #008f39; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s; 
+    font-size: 1rem;
+    display: flex;
+    align-items: center; 
+    border-radius: 5px; 
+}
+
+.arrow {
+    font-size: 1.5rem; 
+}
+
+.pagination button:hover,
+.arrow:hover {
+    background-color: #44E32A; 
+    color: white;
+}
+
+.pagination button.active {
+    background-color: #44E32A; 
+    color: white; 
+}
+
+.items-per-page select {
+    padding: 4px ;
+    border: 2px solid #ccc; 
+    border-radius: 4px; 
+    background-color: transparent; 
+    transition: border-color 0.3s;
+}
+
+.items-per-page select:focus {
+    border: 1px solid #44E32A !important;
+    outline: none !important; 
+    box-shadow: 0 0 5px rgba(68, 227, 42, 0.5); 
+}
+
+.data-table-footer{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.top-container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.top-container > * {
+    flex-grow: 0.1; 
+}
+
+.bulk-select-checkbox {
+    appearance: none; 
+    width: 20px; 
+    height: 20px; 
+    background-color: #fff; 
+    border: 2px solid #44E32A; 
+    border-radius: 4px; 
+    cursor: pointer;
+    position: relative; 
+}
+
+.bulk-select-checkbox:checked {
+    background-color: #44E32A; 
+}
+
+.bulk-select-checkbox:checked::after {
+    content: ''; /* Contenido vacío para el pseudo-elemento */
+    position: absolute; /* Posición absoluta */
+    left: 6px; /* Posición desde la izquierda */
+    top: 2px; /* Posición desde arriba */
+    width: 6px; /* Ancho del tick */
+    height: 10px; /* Altura del tick */
+    border: solid white;
+    border-width: 0 3px 3px 0; 
+    transform: rotate(45deg); /* Rotación del tick */
+}
+
+/* Boton de mostrar */
+.export-container{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.items-per-page {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+  
+  .custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+  
+  .custom-select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100px;
+}
+  
+.custom-select-wrapper select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+  
+.custom-select-wrapper::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 12px;
+    color: #888;
+}
