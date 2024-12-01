@@ -128,7 +128,6 @@ async loadUser(): Promise<void> {
       confirmButtonText: 'Sí',
       cancelButtonText: 'Cancelar',
       reverseButtons: true,
-      
       confirmButtonColor: '#36c236',
       cancelButtonColor: '#ff0000',
     }).then((result) => {

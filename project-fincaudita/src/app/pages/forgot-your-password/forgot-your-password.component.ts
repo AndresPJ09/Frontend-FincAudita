@@ -25,6 +25,8 @@ export class ForgotYourPasswordComponent {
   timer: any;
   showModal: boolean = true;  
   loading: boolean = false; 
+  verificationCodeParts: string[] = ["", "", "", ""];
+  isCodeComplete: boolean = false;
   user: any = { id: 0, username: '', password: '',  personId: 0, state: true };
   private apiUrl = 'http://localhost:9191/password'; 
   private apiUrlUser = 'http://localhost:9191/api/User';
@@ -57,7 +59,6 @@ export class ForgotYourPasswordComponent {
     return true;
   }
   
-  // Validación de coincidencia de contraseñas
   isPasswordsMatching(password: string, confirmPassword: string): boolean {
     return password === confirmPassword;
   }
@@ -76,7 +77,23 @@ export class ForgotYourPasswordComponent {
       icon?.classList.add('fa-eye');
     }
   }
-  
+
+  moveToNext(event: Event, index: number): void {
+    const input = event.target as HTMLInputElement;
+    if (/\d/.test(input.value)) {
+      this.verificationCodeParts[index] = input.value;
+      if (index < 3) {
+        const nextInput = document.getElementById(`code-${index + 2}`) as HTMLInputElement;
+        if (nextInput) {
+          nextInput.focus(); 
+        }
+      }
+    } else {
+      input.value = ""; 
+    }
+    this.verificationCode = this.verificationCodeParts.join("");
+    this.isCodeComplete = this.verificationCodeParts.every((part) => part.length === 1);
+  }
 
   // Método para pasar al siguiente paso
   async nextStep(): Promise<void> {
@@ -139,7 +156,7 @@ export class ForgotYourPasswordComponent {
 
   // Validación del código de verificación
   validateCode(): boolean {
-    return this.verificationCode.length === 4; // Código de 6 dígitos
+    return this.verificationCode.length === 4; 
   }
 
   // Validación de las contraseñas
@@ -147,20 +164,6 @@ export class ForgotYourPasswordComponent {
     return !!this.newPassword && !!this.confirmPassword && this.newPassword === this.confirmPassword;
   }
   
-
-  // Reenviar código de verificación con temporizador
-  resendCode(): void {
-    if (this.timeLeft === 0) {
-      this.timeLeft = 30; // Reinicia el contador a 30 segundos
-
-      this.timer = setInterval(() => {
-        this.timeLeft--;
-        if (this.timeLeft === 0) {
-          clearInterval(this.timer);
-        }
-      }, 1000);
-    }
-  }
 
   // Confirmar salir y perder datos
   confirmExit(): void {
@@ -192,9 +195,9 @@ export class ForgotYourPasswordComponent {
     Swal.fire({
       title: 'Cargando...',
       text: 'Estamos enviando el código de activación...',
-      allowOutsideClick: false, // Deshabilitar clic fuera de la alerta
+      allowOutsideClick: false,
       didOpen: () => {
-        Swal.showLoading(); // Mostrar el spinner
+        Swal.showLoading(); 
       }
     });
   
@@ -210,7 +213,27 @@ export class ForgotYourPasswordComponent {
       }
     );
   }
-  
+
+  // Enviar la nueva contraseña (solo validación por ahora)
+  submitPassword(): void {
+    if (this.validatePasswords()) {
+      this.updatedUser(); 
+    } else {
+      Swal.fire('Error', 'Las contraseñas no coinciden o están vacías.', 'error');
+    }
+  }
+
+// Temporizador de 30 segundos
+startTimer(): void {
+  this.timeLeft = 30;
+  this.timer = setInterval(() => {
+    this.timeLeft--;
+    if (this.timeLeft === 0) {
+      clearInterval(this.timer);
+    }
+  }, 1000);
+}
+
 
   //metodo para consultar el user
   loadUser(): void {
@@ -249,7 +272,7 @@ export class ForgotYourPasswordComponent {
     this.http.put(`${this.apiUrlUser}`, updatedData).subscribe(
       (response: any) => {
         Swal.fire('¡Éxito!', 'Contraseña cambiada con éxito.', 'success');
-        this.router.navigate(['/login']); // Redirige al inicio de sesión
+        this.router.navigate(['/login']); 
       },
       (error) => {
         console.error('Error al actualizar el usuario:', error);
@@ -273,7 +296,7 @@ export class ForgotYourPasswordComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         sessionStorage.removeItem('activationData'); 
-        this.currentStep = 1; // Volver al paso 1
+        this.currentStep = 1; 
       }
     });
   }
@@ -292,17 +315,9 @@ export class ForgotYourPasswordComponent {
       cancelButtonColor: '#ff0000',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.currentStep = 2; // Volver al paso 2
+        this.currentStep = 2;
       }
     });
   }
 
-  // Enviar la nueva contraseña (solo validación por ahora)
-  submitPassword(): void {
-    if (this.validatePasswords()) {
-      this.updatedUser(); // Llamar a updatedUser para realizar la actualización
-    } else {
-      Swal.fire('Error', 'Las contraseñas no coinciden o están vacías.', 'error');
-    }
-  }
 }
