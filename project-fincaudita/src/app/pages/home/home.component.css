@@ -50,80 +50,156 @@
 }
 
 .charts-dashboard {
-  padding: 1.5rem;
-  background: #f8f9fa;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   border-radius: 20px;
+  margin: 20px;
 }
 
 .chart-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   background: white;
-  border-radius: 20px;
+  border-radius: 16px;
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
   padding: 1.5rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   margin-bottom: 1.5rem;
-  height: 350px;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  overflow: hidden;
+}
+
+.chart-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #4CAF50, #2196F3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .chart-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-  background: rgba(76, 175, 80, 0.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.chart-card:hover::before {
+  opacity: 1;
 }
 
 .chart-title {
-  font-size: 1.2rem;
+  color: #2c3e50;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: #333;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-align: center;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
-.row {
-  margin: -0.75rem;
+.chart-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #4CAF50, #2196F3);
+  border-radius: 3px;
 }
 
-.col-md-4 {
-  padding: 0.75rem;
+.chart-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-/* Animaciones */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Efectos de hover para las gráficas */
+.chart-container canvas {
+  transition: all 0.3s ease;
+}
+
+.chart-card:hover .chart-container canvas {
+  transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .charts-dashboard {
+    padding: 1rem;
+    margin: 10px;
+  }
+
+  .chart-container {
+    height: 250px;
+  }
+
+  .chart-card {
+    margin-bottom: 1rem;
+  }
+
+  .chart-title {
+    font-size: 1.1rem;
+  }
+}
+
+/* Animación de entrada */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .chart-card {
-  animation: fadeIn 0.5s ease-out forwards;
+  animation: slideIn 0.6s ease-out forwards;
 }
 
 .chart-card:nth-child(1) { animation-delay: 0.1s; }
 .chart-card:nth-child(2) { animation-delay: 0.2s; }
 .chart-card:nth-child(3) { animation-delay: 0.3s; }
 
+/* Grid responsivo */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -0.75rem;
+}
+
+.col-md-4 {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+  padding: 0.75rem;
+}
+
+@media (max-width: 992px) {
+  .col-md-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
 @media (max-width: 768px) {
   .col-md-4 {
     flex: 0 0 100%;
     max-width: 100%;
   }
-  
-  .chart-card {
-    height: 300px;
-  }
-  
-  .welcome-card .card-title {
-    font-size: 1.5rem;
-  }
 }
 
-.dashboard-container {
-  padding: 2rem;
-  background: #f8f9fa;
-}
-
-/* Tarjetas de resumen */
 .summary-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -183,18 +259,10 @@
   color: #4CAF50;
 }
 
-/* Gráficas */
 .charts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 1.5rem;
-}
-
-.chart-container {
-  background: white;
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 .chart-header {
@@ -226,6 +294,11 @@
   border-color: #2196F3;
 }
 
+.dashboard-container {
+  padding: 2rem;
+  background: #f8f9fa;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .dashboard-container {
@@ -250,6 +323,14 @@
 
   .welcome-card .card-text {
     font-size: 1rem;
+  }
+
+  .chart-container {
+    height: 250px;
+  }
+  
+  .chart-card {
+    margin-bottom: 15px;
   }
 }
 

@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [CalendarComponent, RouterLink, HttpClientModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private charts: any[] = [];
@@ -39,50 +39,63 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private createFincasChart(fincas: any[]) {
-    const config: ChartConfiguration<'bar'> = {
+    const gradientBg = this.createGradient('fincasChart', 'rgba(76, 175, 80, 0.8)', 'rgba(76, 175, 80, 0.1)');
+    
+    const config: ChartConfiguration = {
       type: 'bar',
       data: {
         labels: ['Total de Fincas'],
         datasets: [{
           label: 'Cantidad de Fincas',
           data: [fincas.length],
-          backgroundColor: 'rgba(76, 175, 80, 0.9)',
+          backgroundColor: gradientBg,
           borderColor: 'rgba(76, 175, 80, 1)',
           borderWidth: 2,
-          borderRadius: 10,
-          barThickness: 60,
-          hoverBackgroundColor: 'rgba(76, 175, 80, 1)',
-          hoverBorderColor: 'rgba(255, 255, 255, 1)',
+          borderRadius: 8,
+          borderSkipped: false,
+          barThickness: 40,
+          hoverBackgroundColor: 'rgba(76, 175, 80, 0.9)',
+          hoverBorderColor: 'rgba(76, 175, 80, 1)',
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        animation: {
-          duration: 1000,
-          easing: 'easeOutBounce'
-        },
         plugins: {
           legend: {
             display: true,
+            position: 'top',
             labels: {
               font: {
-                size: 14,
-                weight: 'bold'
+                family: "'Poppins', sans-serif",
+                size: 13,
+                weight: 500
               },
-              color: '#333'
+              padding: 20,
+              usePointStyle: true,
+              pointStyle: 'circle'
             }
           },
           tooltip: {
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
             titleColor: '#333',
             bodyColor: '#666',
+            bodyFont: {
+              family: "'Poppins', sans-serif",
+              size: 13
+            },
+            titleFont: {
+              family: "'Poppins', sans-serif",
+              size: 14,
+              weight: 600
+            },
             padding: 12,
-            borderColor: 'rgba(76, 175, 80, 0.5)',
-            borderWidth: 1,
+            cornerRadius: 8,
             displayColors: false,
+            borderColor: 'rgba(0, 0, 0, 0.1)',
+            borderWidth: 1,
             callbacks: {
-              label: (context) => ` ${context.parsed.y} Fincas registradas`
+              label: (context) => ` ${context.raw} Fincas registradas`
             }
           }
         },
@@ -90,14 +103,16 @@ export class HomeComponent implements OnInit, OnDestroy {
           y: {
             beginAtZero: true,
             grid: {
-              color: 'rgba(0, 0, 0, 0.1)',
+              color: 'rgba(0, 0, 0, 0.06)',
+              display: true
             },
             ticks: {
               font: {
-                size: 12,
-                weight: 500
+                family: "'Poppins', sans-serif",
+                size: 12
               },
-              color: '#666'
+              color: '#666',
+              padding: 10
             }
           },
           x: {
@@ -106,23 +121,31 @@ export class HomeComponent implements OnInit, OnDestroy {
             },
             ticks: {
               font: {
-                size: 14,
-                weight: 'bold'
+                family: "'Poppins', sans-serif",
+                size: 12,
+                weight: 500
               },
               color: '#333'
             }
           }
+        },
+        animation: {
+          duration: 2000,
+          easing: 'easeInOutQuart'
         }
       }
     };
 
-    const chart = new Chart('fincasChart', config);
-    this.charts.push(chart);
+    const ctx = document.getElementById('fincasChart') as HTMLCanvasElement;
+    if (ctx) {
+      const chart = new Chart(ctx, config);
+      this.charts.push(chart);
+    }
   }
 
   private createCultivosChart(cultivos: any[]) {
-    const config: ChartConfiguration = {
-      type: 'pie' as ChartType,
+    const config: ChartConfiguration<'doughnut'> = {
+      type: 'doughnut',
       data: {
         labels: cultivos.map(c => c.name || 'Sin nombre'),
         datasets: [{
@@ -132,37 +155,23 @@ export class HomeComponent implements OnInit, OnDestroy {
             'rgba(54, 162, 235, 0.8)',
             'rgba(255, 206, 86, 0.8)',
             'rgba(75, 192, 192, 0.8)',
-            'rgba(153, 102, 255, 0.8)'
+            'rgba(153, 102, 255, 0.8)',
+            'rgba(255, 159, 64, 0.8)',
+            'rgba(76, 175, 80, 0.8)',
+            'rgba(233, 30, 99, 0.8)'
           ],
           borderColor: 'white',
           borderWidth: 3,
-          hoverOffset: 15,
-          hoverBorderWidth: 0
+          offset: 10,
+          spacing: 5,
+          borderRadius: 20
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        radius: '90%',
         plugins: {
-          tooltip: {
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
-            titleColor: '#333',
-            bodyColor: '#666',
-            padding: 12,
-            borderColor: 'rgba(0, 0, 0, 0.1)',
-            borderWidth: 1
-          },
-          title: {
-            display: true,
-            text: 'Distribución de Cultivos',
-            font: {
-              size: 18,
-              weight: 'bold',
-              family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
-            },
-            padding: { top: 20, bottom: 20 },
-            color: '#333'
-          },
           legend: {
             position: 'bottom',
             labels: {
@@ -170,70 +179,131 @@ export class HomeComponent implements OnInit, OnDestroy {
               usePointStyle: true,
               pointStyle: 'circle',
               font: {
-                size: 12,
-                weight: 500
+                family: "'Poppins', sans-serif",
+                size: 12
               }
             }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            titleColor: '#333',
+            bodyColor: '#666',
+            bodyFont: {
+              family: "'Poppins', sans-serif",
+              size: 13
+            },
+            titleFont: {
+              family: "'Poppins', sans-serif",
+              size: 14,
+              weight: 600
+            },
+            padding: 12,
+            cornerRadius: 8,
+            displayColors: true,
+            borderColor: 'rgba(0, 0, 0, 0.1)',
+            borderWidth: 1
           }
         },
-        layout: {
-          padding: 20
+        animation: {
+          duration: 2000,
+          easing: 'easeInOutQuart'
         }
       }
     };
 
-    const chart = new Chart('cultivosChart', config);
-    this.charts.push(chart);
+    const ctx = document.getElementById('cultivosChart') as HTMLCanvasElement;
+    if (ctx) {
+      const chart = new Chart(ctx, config);
+      this.charts.push(chart);
+    }
   }
 
   private createLotesChart(lotes: any[]) {
-    const config: ChartConfiguration<'doughnut'> = {
-      type: 'doughnut',
+    const gradientBg = this.createGradient('lotesChart', 'rgba(54, 162, 235, 0.8)', 'rgba(54, 162, 235, 0.1)');
+
+    const config: ChartConfiguration = {
+      type: 'polarArea',
       data: {
         labels: ['Lotes Registrados'],
         datasets: [{
           label: 'Cantidad de Lotes',
           data: [lotes.length],
-          backgroundColor: [
-            'rgba(54, 162, 235, 0.8)'
-          ],
-          borderColor: 'white',
-          borderWidth: 2,
-          hoverOffset: 4
+          backgroundColor: [gradientBg],
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 2
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Total de Lotes',
-            font: {
-              size: 16,
-              weight: 'bold'
+        scales: {
+          r: {
+            ticks: {
+              display: false
             },
-            padding: 20
-          },
+            grid: {
+              color: 'rgba(0, 0, 0, 0.05)'
+            }
+          }
+        },
+        plugins: {
           legend: {
             position: 'bottom',
             labels: {
+              font: {
+                family: "'Poppins', sans-serif",
+                size: 12
+              },
               padding: 20,
               usePointStyle: true,
               pointStyle: 'circle'
             }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            titleColor: '#333',
+            bodyColor: '#666',
+            bodyFont: {
+              family: "'Poppins', sans-serif",
+              size: 13
+            },
+            titleFont: {
+              family: "'Poppins', sans-serif",
+              size: 14,
+              weight: 600
+            },
+            padding: 12,
+            cornerRadius: 8,
+            displayColors: true,
+            borderColor: 'rgba(0, 0, 0, 0.1)',
+            borderWidth: 1
           }
         },
-        radius: '90%',
-        cutout: '70%',
-        layout: {
-          padding: 20
+        animation: {
+          duration: 2000,
+          easing: 'easeInOutQuart'
         }
       }
     };
 
-    const chart = new Chart('lotesChart', config);
-    this.charts.push(chart);
+    const ctx = document.getElementById('lotesChart') as HTMLCanvasElement;
+    if (ctx) {
+      const chart = new Chart(ctx, config);
+      this.charts.push(chart);
+    }
+  }
+
+  private createGradient(chartId: string, colorStart: string, colorEnd: string): CanvasGradient | string {
+    const ctx = document.getElementById(chartId) as HTMLCanvasElement;
+    if (!ctx) return colorStart;
+
+    const context = ctx.getContext('2d');
+    if (!context) return colorStart;
+
+    const gradient = context.createLinearGradient(0, 0, 0, ctx.height);
+    gradient.addColorStop(0, colorStart);
+    gradient.addColorStop(1, colorEnd);
+    return gradient;
   }
 
   ngOnDestroy() {
