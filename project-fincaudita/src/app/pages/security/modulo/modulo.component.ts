@@ -11,7 +11,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
 interface Modulo {
   id: number;
   name: string;
@@ -39,6 +38,8 @@ export class ModuloComponent implements OnInit {
   itemsPerPageOptions = [5, 10, 20, 50];
   isDropdownOpen = false;
   moduloForm!: FormGroup;
+  sortColumn: string = '';
+  sortDirection: 'asc' | 'desc' = 'asc';
 
   private apiUrl = 'http://localhost:9191/api/Modulo';
 
@@ -48,17 +49,13 @@ export class ModuloComponent implements OnInit {
     private fb: FormBuilder,
   ) { }
 
-
-
   onInputChange(field: any) {
     field.control.updateValueAndValidity();
   }
 
   ngOnInit(): void {
     this.getModulos();
-
   }
-
 
   onlyPositiveNumbers(event: KeyboardEvent) {
     // Permitir solo números (0-9) y el punto (.) si es necesario
@@ -212,6 +209,16 @@ export class ModuloComponent implements OnInit {
     return this.modulos.some(modulo => modulo.selected);
   }
 
+  // Manejar la selección individual de items
+  onItemSelect(): void {
+    // Actualizar el estado del checkbox principal basado en las selecciones individuales
+    const allSelected = this.modulos.every(modulo => modulo.selected);
+    const someSelected = this.modulos.some(modulo => modulo.selected);
+    
+    // Puedes usar estas variables para actualizar la UI o realizar otras acciones
+    this.cdr.detectChanges();
+  }
+
   // Eliminar los módulos seleccionados
   deleteSelected(): void {
     const selectedIds = this.modulos.filter(modulo => modulo.selected).map(modulo => modulo.id);
@@ -256,7 +263,6 @@ export class ModuloComponent implements OnInit {
 
   // Exportar la lista de módulos a PDF
 
-
   exportToPDF(): void {
     const doc = new jsPDF();
 
@@ -299,7 +305,6 @@ export class ModuloComponent implements OnInit {
     // Guardar el PDF
     doc.save('listado_de_modulos.pdf');
   }
-
 
   // Manejar la selección de exportación
   handleExport(event: any): void {
@@ -352,5 +357,32 @@ export class ModuloComponent implements OnInit {
   // Navegar a una página específica
   goToPage(page: number): void {
     this.currentPage = page;
+  }
+
+  sortData(column: string) {
+    if (this.sortColumn === column) {
+      // Si ya estamos ordenando por esta columna, cambiamos la dirección
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      // Si es una nueva columna, establecemos la columna y la dirección por defecto
+      this.sortColumn = column;
+      this.sortDirection = 'asc';
+    }
+
+    this.filteredModulos.sort((a: any, b: any) => {
+      const valueA = a[column];
+      const valueB = b[column];
+
+      if (typeof valueA === 'string') {
+        const comparison = valueA.localeCompare(valueB);
+        return this.sortDirection === 'asc' ? comparison : -comparison;
+      } else if (typeof valueA === 'number') {
+        return this.sortDirection === 'asc' ? valueA - valueB : valueB - valueA;
+      } else if (typeof valueA === 'boolean') {
+        const boolComparison = (valueA === valueB) ? 0 : valueA ? -1 : 1;
+        return this.sortDirection === 'asc' ? boolComparison : -boolComparison;
+      }
+      return 0;
+    });
   }
 }

@@ -188,46 +188,77 @@
 
 <!-- Tabla de módulos -->
 <div class="table-responsive">
-  <table *ngIf="filteredModulos.length > 0" class="table">
+  <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th style="width: 50px">
+        <th class="checkbox-column">
           <input 
             type="checkbox" 
-            (change)="selectAll($event)" 
-            [checked]="areAllSelected()" 
             class="bulk-select-checkbox"
+            (change)="selectAll($event)" 
+            [checked]="areAllSelected()"
           />
         </th>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Posición</th>
-        <th>Estado</th>
-        <th style="width: 120px">Acciones</th>
+        <th (click)="sortData('name')" class="sortable-header">
+          Nombre
+          <i class="fas" [ngClass]="{
+            'fa-sort': sortColumn !== 'name',
+            'fa-sort-up': sortColumn === 'name' && sortDirection === 'asc',
+            'fa-sort-down': sortColumn === 'name' && sortDirection === 'desc'
+          }"></i>
+        </th>
+        <th (click)="sortData('description')" class="sortable-header">
+          Descripción
+          <i class="fas" [ngClass]="{
+            'fa-sort': sortColumn !== 'description',
+            'fa-sort-up': sortColumn === 'description' && sortDirection === 'asc',
+            'fa-sort-down': sortColumn === 'description' && sortDirection === 'desc'
+          }"></i>
+        </th>
+        <th (click)="sortData('position')" class="sortable-header">
+          Posición
+          <i class="fas" [ngClass]="{
+            'fa-sort': sortColumn !== 'position',
+            'fa-sort-up': sortColumn === 'position' && sortDirection === 'asc',
+            'fa-sort-down': sortColumn === 'position' && sortDirection === 'desc'
+          }"></i>
+        </th>
+        <th (click)="sortData('state')" class="sortable-header">
+          Estado
+          <i class="fas" [ngClass]="{
+            'fa-sort': sortColumn !== 'state',
+            'fa-sort-up': sortColumn === 'state' && sortDirection === 'asc',
+            'fa-sort-down': sortColumn === 'state' && sortDirection === 'desc'
+          }"></i>
+        </th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let modulo of paginatedModulos()">
-        <td>
+      <tr *ngFor="let item of filteredModulos">
+        <td class="checkbox-column">
           <input 
             type="checkbox" 
-            [(ngModel)]="modulo.selected" 
             class="bulk-select-checkbox"
+            [(ngModel)]="item.selected"
+            (change)="onItemSelect()"
           />
         </td>
-        <td>{{ modulo.name }}</td>
-        <td>{{ modulo.description }}</td>
-        <td>{{ modulo.position }}</td>
-        <td>
-          <span [ngClass]="modulo.state ? 'text-success' : 'text-danger'">
-            {{ modulo.state ? 'Activo' : 'Inactivo' }}
+        <td>{{item.name}}</td>
+        <td>{{item.description}}</td>
+        <td class="text-center">{{item.position}}</td>
+        <td class="text-center">
+          <span [ngClass]="item.state ? 'text-success' : 'text-danger'">
+            {{item.state ? 'Activo' : 'Inactivo'}}
           </span>
         </td>
-        <td>
-          <button class="btn-icon edit" (click)="editModulo(modulo)" title="Editar">
+        <td class="text-center">
+          <button class="btn btn-icon" (click)="editModulo(item)" 
+            ngbTooltip="Editar" placement="top">
             <i class="fas fa-edit"></i>
           </button>
-          <button class="btn-icon delete" (click)="deleteModulo(modulo.id)" title="Eliminar">
+          <button class="btn btn-icon delete-btn" (click)="deleteModulo(item.id)" 
+            ngbTooltip="Eliminar" placement="top">
             <i class="fas fa-trash"></i>
           </button>
         </td>
