@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors } from '@angular/forms';
@@ -42,6 +42,8 @@ export class ModuloComponent implements OnInit {
   sortDirection: 'asc' | 'desc' = 'asc';
 
   private apiUrl = 'http://localhost:9191/api/Modulo';
+
+  @ViewChild('exportSelect') exportSelect: any;
 
   constructor(
     private http: HttpClient,
@@ -307,17 +309,21 @@ export class ModuloComponent implements OnInit {
   }
 
   // Manejar la selección de exportación
-  handleExport(event: any): void {
-    const value = event;
+  handleExport(format: string): void {
+    if (!format) return;
 
-    if (value === 'pdf') {
+    if (format === 'pdf') {
       this.exportToPDF();
-    } else if (value === 'excel') {
+    } else if (format === 'excel') {
       this.exportToExcel();
     }
 
-    // Resetear el select después de la exportación
-    this.searchTerm = ''; // Esto restablece el valor
+    // Limpiar la selección y cerrar el dropdown
+    setTimeout(() => {
+      if (this.exportSelect) {
+        this.exportSelect.clearModel();
+      }
+    });
   }
 
   // Manejar el cambio en el término de búsqueda

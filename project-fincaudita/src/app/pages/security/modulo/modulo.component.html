@@ -11,7 +11,7 @@
       class="form-control input-field" />
   </div>
 
-  <div class="export-container">
+  <div class="controls-container">
     <!-- Selector de ítems por página -->
     <div class="items-per-page">
       <label for="itemsPerPage">Mostrar:</label>
@@ -22,15 +22,18 @@
 
     <!-- Select para exportar -->
     <div class="export-select">
-      <ng-select (change)="handleExport($event)" [placeholder]="'Exportar Como'" [clearable]="true"
+      <ng-select #exportSelect
+        (change)="handleExport($event)"
+        [placeholder]="'Exportar Como'"
+        [clearable]="false"
         [searchable]="false">
-        <ng-option value="pdf" class="custom-option">
+        <ng-option value="pdf">
           <div class="option-container">
             <i class="fas fa-file-pdf"></i>
             <span class="custom-option-text">PDF</span>
           </div>
         </ng-option>
-        <ng-option value="excel" class="custom-option">
+        <ng-option value="excel">
           <div class="option-container">
             <i class="fas fa-file-excel"></i>
             <span class="custom-option-text">Excel</span>
@@ -40,8 +43,10 @@
     </div>
   </div>
 
-  <!-- Botón para agregar un nuevo módulo -->
-  <button class="btn btn-success add-btn" (click)="openModal()">Agregar nuevo <i class="fas fa-plus"></i></button>
+  <!-- Botón Agregar nuevo -->
+  <button class="btn btn-success add-btn" (click)="openModal()">
+    Agregar nuevo <i class="fas fa-plus"></i>
+  </button>
 </div>
 
 <!-- Modal para agregar/editar módulo -->
