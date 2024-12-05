@@ -4,7 +4,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
+  min-height: 110vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,28 +16,21 @@
 .background-container {
   position: relative;
   width: 100%;
-  height: 100vh;
-  /* Ocupa toda la altura de la ventana */
+  height: 110vh;
   display: flex;
-  /* Añadir display flex */
   justify-content: center;
-  /* Centra horizontalmente */
   align-items: center;
-  /* Centra verticalmente */
 }
 
 .background-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Cubre el área del contenedor sin distorsionar la imagen */
   position: absolute;
   top: 0;
   left: 0;
   z-index: -1;
-  /* Envía la imagen detrás del modal */
 }
-
 
 .modal-content {
   background-color: #fefefe;
@@ -48,20 +41,11 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-
-.modal-content {
-  color: witch;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 900px;
-}
-
 .show-modal {
   display: block;
 }
 
+/**** Botones ****/
 .modal-footer {
   display: flex;
   justify-content: space-between;
@@ -83,26 +67,27 @@
   color: #000000;
 }
 
-/* Botones del modal de cerrar y agregar */
-.btn-secondary {
-  background-color: #ff0000;
-  color: rgb(255, 255, 255);
-  border: none;
-  margin-right: 10px;
-}
+/********/
 
-.btn-primary {
-  background-color: #00FF2A;
-  color: rgb(255, 255, 255);
-  border: none;
-  margin-left: 10px;
-}
-
-/* Progreso de los pasos */
+/**** Progreso de los pasos ****/
+/* Contenedor de progreso con línea verde */
 .progress-indicator {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  margin-bottom: 40px;
+  top: 20px;
+}
+
+.progress-indicator::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #00FF2A;
+  bottom: -8px;
+  left: 0;
 }
 
 .step {
@@ -117,7 +102,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(185, 184, 184, 0.1); /* Fondo transparente */
+  background-color: rgba(185, 184, 184, 0.1);
   color: #f1f1f1; 
   font-weight: bold;
   font-size: 16px;
@@ -142,39 +127,32 @@
 .line.completed {
   background-color: #00FF2A;
 }
+/********/
 
-/* Estilos del formulario */
-.container.forgot-password-form {
-  padding: 20px;
-  border-radius: 8px;
-}
-
+/**** Estilos del formulario ****/
 .form-container {
-  background: rgba(255, 255, 255, 0.1);
-  /* Fondo transparente */
+  background: rgba(255, 255, 255, 0.315);
   margin: 5% auto;
   padding: 20px;
   width: 70%;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   max-width: 900px;
-  top: 60px;
+  margin-top: -7px;
 }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
+.form-container2 {
+  background: rgba(255, 255, 255, 0.315);
+  margin: 5% auto;
+  padding: 20px;
+  width: 70%;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  max-width: 900px;
+  margin-top: -7px;
 }
 
-.col {
-  flex: 1;
-  margin-right: 10px;
-}
-
-.col:last-child {
-  margin-right: 0;
-}
+/********/
 
 input.form-control,
 select.form-control {
@@ -201,11 +179,6 @@ label {
 
 }
 
-.position-relative {
-  position: relative;
-  margin-bottom: 34px;
-}
-
 .input-group {
   position: relative;
 }
@@ -220,19 +193,25 @@ label {
   pointer-events: none;
 }
 
+.position-relative {
+  position: relative;
+  margin-bottom: 34px;
+}
+
 .position-relative1 {
   position: relative;
-  top: 20px;
+  top: 5px;
 }
 
 .position-relative2 {
   position: relative;
-  top: 20px;
+  top: 40px;
+  margin-bottom: 80px;
 }
 
 .position-relative3 {
   position: relative;
-  top: 40px;
+  top: -20px;
 }
 
 .position-relative4 {
@@ -240,24 +219,24 @@ label {
   top: 40px;
 }
 
+/**** Estilos de los botones ****/
 
-
-/* Estilos de los botones */
-.button-group {
-  display: flex;
-  justify-content: space-between;
+.btn-secondary {
+  background-color: #ff0000;
+  color: rgb(255, 255, 255);
+  border: none;
+  margin-right: 10px;
 }
 
-.btn {
-  padding: 10px 20px;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
+.btn-primary {
+  background-color: #00FF2A;
+  color: rgb(255, 255, 255);
+  border: none;
+  margin-left: 10px;
 }
 
 .btn-success {
   background-color: #00FF2A;
-  /* Verde para el botón */
   color: white;
   border: none;
 }
@@ -267,91 +246,31 @@ label {
   color: white;
   border: none;
   position: relative;
-  top: 5px;
 }
 
 .btn-success1 {
   background-color: #00FF2A;
-  /* Verde para el botón */
   color: white;
   border: none;
   position: relative;
-  top: 5px;
 }
 
 .btn-success3 {
   background-color: #00FF2A;
-  /* Verde para el botón */
   color: white;
   border: none;
   padding: 10px 20px;
-  /* Espaciado interno para hacerlo más corto */
   margin: 20px auto;
-  /* Centra el botón horizontalmente */
   display: block;
-  /* Cambia a bloque para el centrado */
   border-radius: 8px;
-  /* Ajusta el borde */
   max-width: 200px;
-  /* Ancho máximo para el botón */
-}
-
-.terms-acceptance {
-  display: flex;
-  justify-content: center;
-  /* Centra horizontalmente */
-  align-items: center;
-  /* Centra verticalmente */
-  margin-top: 20px;
-  /* Espaciado superior si es necesario */
-}
-
-/* Botón "Atrás" */
-.btn-back {
-  background-color: #00FF2A;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn-back:hover {
-  background-color: #006a28;
-  /* Verde más oscuro */
-}
-
-/* Contenedor de progreso con línea verde */
-.progress-indicator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  margin-bottom: 20px;
-  top: 20px;
-}
-
-/* Línea estática verde debajo de los números */
-.progress-indicator::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 3px;
-  background-color: #00FF2A;
-  bottom: -8px;
-  left: 0;
 }
 
 /* Botones */
 .button-group {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  top: 45px;
 }
 
 .btn {
@@ -361,23 +280,7 @@ label {
   cursor: pointer;
 }
 
-.btn-back,
-.btn-success {
-  background-color: #00FF2A;
-  color: white;
-  border: none;
-}
-.btn-back:hover {
-  background-color: #006a28;
-}
-
-.button-group {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 60px;
-  /* Más espacio entre los campos del formulario y los botones */
-
-}
+/********/
 
 .swal-title {
   font-size: 1.5rem;
@@ -388,41 +291,13 @@ label {
 
 .swal-popup {
   border-radius: 12px;
-  /* Bordes redondeados */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  /* Sombra suave */
 }
 
-/* Estilo para el input válido */
-.form-control:valid {
-  border-color: #008f39;
-}
-
-/* Estilo para el mensaje de feedback cuando el input es válido */
-.form-control:valid+.invalid-feedback {
-  display: none;
-}
-
-/* Estilo para el mensaje de feedback cuando el input es inválido */
-.form-control:invalid+.invalid-feedback {
-  display: block;
-}
-
-.is-valid {
-  border-color: #28a745;
-
-}
-
-.is-invalid {
-  border-color: #dc3545;
-}
-
-.valid-feedback,
-.invalid-feedback {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  font-size: 1.2rem;
+/**** Icono de ver contraseña ****/
+.container.forgot-password-form {
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .toggle-password {
@@ -437,6 +312,7 @@ label {
 .toggle-password:hover {
   color: #44E32A;
 }
+/********/
 
 /* Estilo personalizado para el popup */
 .custom-popup {
@@ -468,45 +344,8 @@ label {
   font-family: 'Roboto', sans-serif;
 }
 
-/* Estilo para el botón de confirmación */
-.custom-confirm-btn {
-  background-color: #55d573 !important;
-  color: white !important;
-  border: none;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 50px;
-  transition: background-color 0.3s, transform 0.3s;
-  box-shadow: 0 8px 20px rgba(85, 213, 115, 0.5);
-}
-
-.custom-confirm-btn:hover {
-  background-color: #49c267 !important;
-  transform: scale(1.1);
-  /* Efecto de aumento */
-}
-
-/* Estilo para el botón de cancelar */
-.custom-cancel-btn {
-  background-color: #ff0000 !important;
-  color: white !important;
-  border: none;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 50px;
-  transition: background-color 0.3s, transform 0.3s;
-  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5);
-}
-
-.custom-cancel-btn:hover {
-  background-color: #e60000 !important;
-  transform: scale(1.1);
-  /* Efecto de aumento */
-}
-
 .move-down {
   margin-top: 1.5rem;
-  /* Ajusta este valor para mover hacia abajo */
 }
 
 /* Estilo del checkbox y la etiqueta */
@@ -536,12 +375,9 @@ label {
   padding: 5px;
   text-align: center;
   position: relative;
-  /* Para utilizar 'top' */
   display: flex;
   justify-content: center;
-  /* Centra horizontalmente */
   align-items: center;
-  /* Centra verticalmente */
   font-size: 18px;
 }
 
@@ -555,7 +391,15 @@ label {
 
 .login-link:hover {
   text-decoration: none;
-  /* Sin subrayado al pasar el mouse */
+}
+
+/**** Term and conditio ****/
+
+.terms-acceptance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .underline-text {
@@ -563,15 +407,11 @@ label {
   margin: 0 auto;
   padding: 5px;
   text-align: center;
-  /* Centra el texto horizontalmente */
   position: relative;
   display: flex;
   justify-content: center;
-  /* Centra horizontalmente */
   align-items: center;
-  /* Centra verticalmente */
   text-decoration: underline;
-  /* Subrayado */
   font-weight: bold;
   font-size: 18px;
 }
@@ -581,13 +421,5 @@ label {
   text-decoration: none;
   cursor: pointer;
 }
+/********/
 
-.text-danger {
-  color: #ff0000;
-  font-weight: bold;
-}
-
-.error-message {
-  color: rgb(255, 0, 0); 
-  margin-top: 18px; /* Espaciado arriba */
-}

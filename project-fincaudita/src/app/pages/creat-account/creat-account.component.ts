@@ -41,6 +41,7 @@ export class CreatAccountComponent implements OnInit {
 
   citys: any[] = [];
   filteredCitys: any[] = [];
+  isValidAddress: boolean = false;
   isModalOpen = false;
   termsAccepted: boolean = false;
   isCheckboxChecked = false;
@@ -48,6 +49,7 @@ export class CreatAccountComponent implements OnInit {
   usernameStrengthMessage: string = '';
   passwordStrength: number = 0;
   passwordStrengthMessage: string | null = null;
+  passwordError: string = '';
 
   private personApiUrl = 'http://localhost:9191/api/Person';
   private userApiUrl = 'http://localhost:9191/api/User';
@@ -71,7 +73,6 @@ export class CreatAccountComponent implements OnInit {
     }
   }
 
-  passwordError: string = '';
   isValidPassword(password: string): boolean {
     if (!password || password.length < 8) {
       this.passwordError = 'La contraseña debe tener al menos 8 caracteres.';
@@ -111,8 +112,6 @@ export class CreatAccountComponent implements OnInit {
     field.control.updateValueAndValidity();
   }
 
-  
-
   setDateLimits() {
     const today = new Date();
     const maxYear = today.getFullYear() - 18;
@@ -139,7 +138,7 @@ export class CreatAccountComponent implements OnInit {
     if (!this.person.cityName) {
       return 'Debes seleccionar una ciudad.';
     }
-    return ''; // En caso de no haber un error, se retorna un string vacío
+    return ''; 
   }
 
   searchCitys(event: any): void {
@@ -344,16 +343,13 @@ export class CreatAccountComponent implements OnInit {
   }
 
   // Método para validar el formato de la dirección
-  isValidAddress: boolean = false;
-
   validateAddress(address: string): void {
-    // Verifica si el campo está vacío
     if (address.length === 0) {
       this.isValidAddress = false;
       return;
     }
     // Patrón de dirección
-    const addressPattern = /^(Calle|Carrera|Transversal)\s\d+\s#\s\d+-\d+$/i;
+    const addressPattern = /^(Calle|Carrera|Avenida)\s\d+\s#\s\d+-\d+$/i;
     this.isValidAddress = addressPattern.test(address);
   }
 
@@ -372,9 +368,6 @@ goToStep(step: number): void {
   this.currentStep = step;
 }
 
-
-
-  
   validateNumber(event: KeyboardEvent) {
     const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete', 'Enter'];
     if (allowedKeys.indexOf(event.key) !== -1) {
@@ -414,7 +407,6 @@ goToStep(step: number): void {
   }
 
   prevStep(): void {
-
     if (this.currentStep > 1) {
       this.currentStep--;
     }
